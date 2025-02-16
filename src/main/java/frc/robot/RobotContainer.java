@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
 
-  
-
   private final CommandXboxController driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   private final CommandXboxController armController = new CommandXboxController(OperatorConstants.kArmControllerPort);
 

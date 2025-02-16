@@ -16,6 +16,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
      
      @Override
      public void execute() {
-         driveSubsystem.tankDrive(-controller.getLeftY(), -controller.getRightY());
+         driveSubsystem.tankDrive(controller.getLeftY(), -controller.getRightY());
      }
  }
