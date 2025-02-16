@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
- public class DriveCommand extends Command {
+public class DriveCommand extends Command {
     private final DriveSubsystem driveSubsystem;
-    private final CommandXboxController controller;
+    private final XboxController controller;
     
-    public DriveCommand(DriveSubsystem subsystem, CommandXboxController controller) {
+    public DriveCommand(DriveSubsystem subsystem, XboxController controller) {
          this.driveSubsystem = subsystem;
          this.controller = controller;
          addRequirements(driveSubsystem);
@@ -16,6 +16,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
      
      @Override
      public void execute() {
-         driveSubsystem.tankDrive(controller.getLeftY(), -controller.getRightY());
+         driveSubsystem.tankDrive(controller.getLeftY(), controller.getRightY());
      }
  }

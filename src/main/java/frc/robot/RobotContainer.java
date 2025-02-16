@@ -6,15 +6,17 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.Teleop;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
 
-  private final CommandXboxController driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  private final CommandXboxController armController = new CommandXboxController(OperatorConstants.kArmControllerPort);
+  private final XboxController driverController = new XboxController(OperatorConstants.kDriverControllerPort);
+  private final XboxController armController = new XboxController(OperatorConstants.kArmControllerPort);
 
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem(driverController);
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
 
   public RobotContainer() {
     configureBindings();
@@ -29,6 +31,6 @@ public class RobotContainer {
    }
 
    public Command getTeleopCommand() {
-      return Teleop.teleop(driveSubsystem, driverController);
+      return Teleop.teleop(driveSubsystem, rollerSubsystem, driverController);
    }
 }
