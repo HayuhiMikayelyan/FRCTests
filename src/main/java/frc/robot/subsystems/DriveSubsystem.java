@@ -47,14 +47,10 @@ public class DriveSubsystem extends SubsystemBase {
     public Command driveCommand() {
         return runOnce(() -> tankDrive(0,0));
     }
-
-    @Override
-    public void periodic() {
-        tankDrive(controller.getLeftY(), -controller.getRightY());
-    }
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
-        drive.tankDrive(leftSpeed, rightSpeed);
+        double delay = 2;
+        drive.tankDrive(leftSpeed/delay, rightSpeed/delay);
     }
 
 }
