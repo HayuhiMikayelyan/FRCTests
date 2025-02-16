@@ -33,6 +33,6 @@ public class RobotContainer {
    }
 
    public Command getTeleopCommand() {
-      return Teleop.teleop(driveSubsystem, rollerSubsystem, catchSubsystem, driverController);
+      return Teleop.teleop(driveSubsystem, rollerSubsystem, catchSubsystem, driverController, armController);
    }
 }

@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
 public final class Teleop {
-    public static Command teleop(DriveSubsystem dsubsystem, RollerSubsystem rsubsystem, CatchSubsystem catchSubsystem, XboxController controller) {
+    public static Command teleop(DriveSubsystem dsubsystem, RollerSubsystem rsubsystem,
+     CatchSubsystem catchSubsystem, XboxController driveController,  XboxController armController) {
       return Commands.parallel(
-        new DriveCommand(dsubsystem, controller),
-        new RollerCommand(rsubsystem, controller),
-        new CatchCommand(catchSubsystem, controller)
+        new DriveCommand(dsubsystem, driveController),
+        new RollerCommand(rsubsystem, armController),
+        new CatchCommand(catchSubsystem, armController)
         );
     }
   
