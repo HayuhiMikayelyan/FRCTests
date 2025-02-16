@@ -13,7 +13,6 @@ public class RobotContainer {
 
   
 
-
   private final CommandXboxController driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   private final CommandXboxController armController = new CommandXboxController(OperatorConstants.kArmControllerPort);
 
