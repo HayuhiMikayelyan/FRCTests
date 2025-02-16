@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
 
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  
 
 
   private final CommandXboxController driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   private final CommandXboxController armController = new CommandXboxController(OperatorConstants.kArmControllerPort);
+
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem(driverController);
 
   public RobotContainer() {
     configureBindings();

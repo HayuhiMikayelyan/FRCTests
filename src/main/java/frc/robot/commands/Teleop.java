@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public final class Teleop {
     public static Command teleop(DriveSubsystem subsystem, CommandXboxController controller) {
-      System.out.println("teleop");
       return Commands.sequence(subsystem.driveCommand(), new DriveCommand(subsystem, controller));
     }
   
