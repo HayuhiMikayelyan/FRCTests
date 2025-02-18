@@ -16,6 +16,12 @@ public class RollerCommand extends Command {
 
     @Override
     public void execute() {
+        if (rollerSubsystem.isAtLimit()) {  // Stop if roller reaches end
+            // rollerSubsystem.setRollerSpeed(0);
+            System.out.println("pressed");
+            return; // Exit early
+        }
+
         if (controller.getRightBumperButton()){
             rollerSubsystem.setRollerSpeed(1);
         } else if (controller.getRightTriggerAxis() > 0.0){
