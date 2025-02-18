@@ -57,9 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
         resetEncoders();
         gyro.reset();
         odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), rightEncoder.getPosition());
-    
-        RobotConfig config;
-    try{
+        try{
       config = RobotConfig.fromGUISettings();
     
 

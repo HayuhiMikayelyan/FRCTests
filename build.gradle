@@ -13,23 +13,15 @@ def ROBOT_MAIN_CLASS = "frc.robot.Main"
 deploy {
     targets {
         roborio(getTargetTypeClass('RoboRIO')) {
-            // Team number is loaded either from the .wpilib/wpilib_preferences.json
-            // or from command line. If not found an exception will be thrown.
-            // You can use getTeamOrDefault(team) instead of getTeamNumber if you
-            // want to store a team number in this file.
             team = project.frc.getTeamNumber()
-            debug = project.frc.getDebugOrDefault(false)
+            debug = false
 
             artifacts {
-
-                frcJava(getArtifactTypeClass('FRCJavaArtifact')) {
-                }
-
+                frcJava(getArtifactTypeClass('FRCJavaArtifact')) {}
                 frcStaticFileDeploy(getArtifactTypeClass('FileTreeArtifact')) {
                     files = project.fileTree('src/main/deploy')
                     directory = '/home/lvuser/deploy'
-                    deleteOldFiles = false // Change to true to delete files on roboRIO that no
-                                           // longer exist in deploy directory of this project
+                    deleteOldFiles = false
                 }
             }
         }
@@ -46,11 +38,9 @@ dependencies {
     annotationProcessor wpi.java.deps.wpilibAnnotations()
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
-
-
     roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
     roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
-
+    implementation 'com.pathplanner.lib:PathplannerLib-java:2025.2.3'
     roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
     roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
 

@@ -16,10 +16,14 @@ public class RollerCommand extends Command {
 
     @Override
     public void execute() {
-        if (controller.getAButton()){
+        if (controller.getRightBumperButton()){
+            rollerSubsystem.setRollerSpeed(1);
+        } else if (controller.getRightTriggerAxis() > 0.0){
+            rollerSubsystem.setRollerSpeed(0.5);
+        } else if (controller.getLeftBumperButton()){
             rollerSubsystem.setRollerSpeed(-1);
-        } else if (controller.getYButton()){
-            rollerSubsystem.setRollerSpeed(0.8);
+        } else if (controller.getLeftTriggerAxis() > 0.0){
+            rollerSubsystem.setRollerSpeed(-0.5);
         } else {
             rollerSubsystem.setRollerSpeed(0);
         }

@@ -16,9 +16,9 @@ public class ExpandArmCommand extends Command{
 
     @Override
     public void execute() {
-        if (controller.getRightBumperButton()){
+        if (controller.getYButton()){
             expandArmSubsystem.setExpandSpeed(0.45);
-        } else if (controller.getLeftBumperButton()){
+        } else if (controller.getAButton()){
             expandArmSubsystem.setExpandSpeed(-0.7);
         } else {
             expandArmSubsystem.setExpandSpeed(0);
