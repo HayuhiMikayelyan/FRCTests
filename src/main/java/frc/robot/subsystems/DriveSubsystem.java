@@ -21,7 +21,6 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPLTVController;
 
-
 public class DriveSubsystem extends SubsystemBase {
     private final SparkMax leftLeader = new SparkMax(1, MotorType.kBrushed);
     private final SparkMax leftFollower = new SparkMax(2, MotorType.kBrushed);
@@ -31,15 +30,16 @@ public class DriveSubsystem extends SubsystemBase {
     private final DifferentialDrive drive = new DifferentialDrive(leftLeader, rightLeader);
     private final SparkMaxConfig driveConfig = new SparkMaxConfig();
 
-    private final RelativeEncoder  leftEncoder = leftLeader.getEncoder();
-    private final RelativeEncoder  rightEncoder = rightLeader.getEncoder();
+    private final RelativeEncoder leftEncoder = leftLeader.getEncoder(); // Keep only left encoder
 
     private final AHRS gyro = new AHRS(SPI.Port.kMXP);
-     private final DifferentialDriveOdometry odometry;
+    private final DifferentialDriveOdometry odometry;
     private RobotConfig config;
     
-    public DriveSubsystem() {
+    // Robot physical parameters
+    private final double trackWidth = 0.5; // Distance between left and right wheels (meters)
 
+    public DriveSubsystem() {
         driveConfig.smartCurrentLimit(60);
         driveConfig.voltageCompensation(12);
 
@@ -51,87 +51,90 @@ public class DriveSubsystem extends SubsystemBase {
 
         driveConfig.disableFollowerMode();
         rightLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        
         leftLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         resetEncoders();
         gyro.reset();
-        odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), rightEncoder.getPosition());
-        try{
-      config = RobotConfig.fromGUISettings();
-    
 
-    // Configure AutoBuilder last
-    AutoBuilder.configure(
-            this::getPose, // Robot pose supplier
-            this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
-            this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-            (speeds, feedforwards) -> driveRobotRelative(speeds), // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
-            new PPLTVController(0.02), // PPLTVController is the built in path following controller for differential drive trains
-            config, // The robot configuration
-            () -> {
-              // Boolean supplier that controls when the path will be mirrored for the red alliance
-              // This will flip the path being followed to the red side of the field.
-              // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+        odometry = new DifferentialDriveOdometry(
+            Rotation2d.fromDegrees(getHeading()), 
+            leftEncoder.getPosition(), 
+            estimateRightDistance()
+        );
 
-              var alliance = DriverStation.getAlliance();
-              if (alliance.isPresent()) {
-                return alliance.get() == DriverStation.Alliance.Red;
-              }
-              return false;
-            },
-            this // Reference to this subsystem to set requirements
-    );
-} catch (Exception e) {
-        // Handle exception as needed
-        e.printStackTrace();
-      }
+        try {
+            config = RobotConfig.fromGUISettings();
+        
+            AutoBuilder.configure(
+                this::getPose,
+                this::resetPose,
+                this::getRobotRelativeSpeeds,
+                (speeds, feedforwards) -> driveRobotRelative(speeds),
+                new PPLTVController(0.02),
+                config,
+                () -> {
+                    var alliance = DriverStation.getAlliance();
+                    return alliance.isPresent() && alliance.get() == DriverStation.Alliance.Red;
+                },
+                this
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void resetPose(Pose2d pose) {
         resetEncoders();
-        odometry.resetPosition(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), rightEncoder.getPosition(), pose);
+        odometry.resetPosition(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), estimateRightDistance(), pose);
     }
 
     @Override
     public void periodic() {
-        odometry.update(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), rightEncoder.getPosition());
+        odometry.update(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), estimateRightDistance());
     }
 
     public Command driveCommand() {
-        return runOnce(() -> tankDrive(0,0));
-    }
-    
-    public void tankDrive(double leftSpeed, double rightSpeed) {
-        double delay = 2;
-        drive.tankDrive(leftSpeed/delay, -rightSpeed/delay);
+        return runOnce(() -> tankDrive(0, 0));
     }
 
+    public void tankDrive(double leftSpeed, double rightSpeed) {
+        double delay = 2;
+        drive.tankDrive(leftSpeed / (-delay),rightSpeed / (-delay));
+    }
     public Pose2d getPose() {
         return odometry.getPoseMeters();
     }
 
     public void resetOdometry(Pose2d pose) {
         resetEncoders();
-        odometry.resetPosition(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), rightEncoder.getPosition(), pose);
+        odometry.resetPosition(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(), estimateRightDistance(), pose);
     }
 
     private void resetEncoders() {
         leftEncoder.setPosition(0);
-        rightEncoder.setPosition(0);
     }
 
     private double getHeading() {
         return gyro.getAngle();
     }
 
+    // 🔹 Estimate Right Wheel Distance Using the Gyro
+    private double estimateRightDistance() {
+        double leftDistance = leftEncoder.getPosition();
+        double headingRadians = Math.toRadians(getHeading());
+
+        return leftDistance - (headingRadians * trackWidth);
+    }
+
     public ChassisSpeeds getRobotRelativeSpeeds() {
-    double vx = 0.1;
-    double vy = -0.1;
-    double omega = gyro.getRate();
-    return new ChassisSpeeds(vx, vy, omega);}
+        double vx = 0.1;
+        double vy = -0.1;
+        double omega = gyro.getRate();
+        return new ChassisSpeeds(vx, vy, omega);
+    }
 
     public void driveRobotRelative(ChassisSpeeds speeds) {
-        drive.arcadeDrive(speeds.vxMetersPerSecond, speeds.omegaRadiansPerSecond);
+        //speeds.vxMetersPerSecond
+        drive.arcadeDrive(0.5, speeds.omegaRadiansPerSecond);
     }
 }
