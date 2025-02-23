@@ -2,17 +2,17 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autos;
 import frc.robot.commands.Teleop;
 import frc.robot.subsystems.ArmUDSubsystem;
 import frc.robot.subsystems.CatchSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.ExpandArmSubsystem;
 import frc.robot.subsystems.HangSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import com.pathplanner.lib.commands.PathPlannerAuto;
-
 
 public class RobotContainer {
 
@@ -36,7 +36,7 @@ public class RobotContainer {
   }
 
    public Command getAutonomousCommand() {
-      return new PathPlannerAuto("Example Auto");
+      return Autos.exampleAuto(new ExampleSubsystem());
    }
 
    public Command getTeleopCommand() {
