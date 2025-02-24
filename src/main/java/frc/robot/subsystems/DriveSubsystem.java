@@ -51,8 +51,11 @@ public class DriveSubsystem extends SubsystemBase {
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
         double delay = 2;
-        drive.tankDrive(leftSpeed/delay, -rightSpeed/delay);
+        drive.tankDrive(leftSpeed/(-delay), rightSpeed/(-delay));
     }
 
-    
+    public void moveForward(double leftSpeed, double rightSpeed) {
+        
+        drive.tankDrive(0.5, 0.5);
+    }
 }

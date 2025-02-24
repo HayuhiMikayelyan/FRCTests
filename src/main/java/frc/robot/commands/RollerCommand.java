@@ -21,7 +21,7 @@ public class RollerCommand extends Command {
         if (controller.getRightBumperButton()){
             rollerSubsystem.setRollerSpeed(0.9);
         } else if (controller.getRightTriggerAxis() > 0.0){
-            rollerSubsystem.setRollerSpeed(0.5);
+            rollerSubsystem.setRollerSpeed(0.7);
         } else if (controller.getLeftBumperButton()){
             if (rollerSubsystem.isAtLimit()) {  // Stop if roller reaches end
                 rollerSubsystem.setRollerSpeed(0);

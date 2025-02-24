@@ -3,6 +3,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.DriveForwardCommand;
 import frc.robot.commands.Teleop;
 import frc.robot.subsystems.ArmUDSubsystem;
 import frc.robot.subsystems.CatchSubsystem;
@@ -36,7 +37,7 @@ public class RobotContainer {
   }
 
    public Command getAutonomousCommand() {
-      return Autos.exampleAuto(new ExampleSubsystem());
+        return new DriveForwardCommand(driveSubsystem, 0.5, 3); // Move forward at 50% speed for 3 seconds
    }
 
    public Command getTeleopCommand() {
