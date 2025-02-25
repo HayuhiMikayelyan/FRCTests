@@ -7,7 +7,9 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,7 +24,7 @@ public class DriveSubsystem extends SubsystemBase {
     private final DifferentialDrive drive = new DifferentialDrive(leftLeader, rightLeader);
     private final SparkMaxConfig driveConfig = new SparkMaxConfig();
 
-    private final AHRS navx = new AHRS(SPI.Port.kMXP); // NavX Gyro
+    AHRS navx = new AHRS(I2C.Port.kMXP);
 
     
     
@@ -51,7 +53,7 @@ public class DriveSubsystem extends SubsystemBase {
         System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
 
         
-        if (!navx.isConnected()) {
+        if (navx.isConnected() == false) {
             System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
         } else {
             System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEES");
@@ -75,7 +77,7 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void moveForward(double leftSpeed, double rightSpeed) {
-        
+        System.out.println("NAVXXXXXXXXXXXXXXX  "+getGyroAngle());
         drive.tankDrive(leftSpeed, rightSpeed);
     }
 
