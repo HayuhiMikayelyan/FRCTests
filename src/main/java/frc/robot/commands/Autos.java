@@ -1,15 +1,15 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.Command;
 
 public final class Autos {
-  public static Command exampleAuto(ExampleSubsystem subsystem) {
-    return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
-  }
-
-  private Autos() {
-    throw new UnsupportedOperationException("This is a utility class!");
-  }
+    public static Command auto(DriveSubsystem driveSubsystem) {
+        return Commands.sequence(
+            new DriveForwardCommand(driveSubsystem, 0.5, 0) // Move forward for 2 sec
+            // new TurnPIDCommand(driveSubsystem, 90)    // Turn 60 degrees using gyro
+            // new DriveForwardCommand(driveSubsystem, 3, 0.5) // Move forward again
+        );
+    }
 }

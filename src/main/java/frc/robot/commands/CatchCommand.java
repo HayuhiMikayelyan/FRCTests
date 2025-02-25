@@ -17,7 +17,7 @@ public class CatchCommand extends Command{
     @Override
     public void execute() {
         if (controller.getBButton()){
-            catchSubsystem.setCatchSpeed(0.8);
+            catchSubsystem.setCatchSpeed(1);
         } else if (controller.getXButton()){
             catchSubsystem.setCatchSpeed(-1);
         } else {

@@ -32,7 +32,7 @@ public class RollerCommand extends Command {
                 rollerSubsystem.setRollerSpeed(0);
 
             }else{
-                rollerSubsystem.setRollerSpeed(-0.7);
+                rollerSubsystem.setRollerSpeed(-0.3);
 }        } else {
             rollerSubsystem.setRollerSpeed(0);
         }

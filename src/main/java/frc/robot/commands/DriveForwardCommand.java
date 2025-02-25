@@ -25,7 +25,7 @@ public class DriveForwardCommand extends Command {
 
     @Override
     public void execute() {
-        driveSubsystem.moveForward(0.5, 0.5); // Move forward
+        driveSubsystem.moveForward(speed, speed); // Move forward
     }
 
     @Override

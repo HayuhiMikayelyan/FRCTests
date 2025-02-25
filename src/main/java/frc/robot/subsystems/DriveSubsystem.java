@@ -2,9 +2,12 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,6 +22,7 @@ public class DriveSubsystem extends SubsystemBase {
     private final DifferentialDrive drive = new DifferentialDrive(leftLeader, rightLeader);
     private final SparkMaxConfig driveConfig = new SparkMaxConfig();
 
+    private final AHRS navx = new AHRS(SPI.Port.kMXP); // NavX Gyro
 
     
     
@@ -38,7 +42,23 @@ public class DriveSubsystem extends SubsystemBase {
         
         leftLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-       
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
+
+        
+        if (!navx.isConnected()) {
+            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
+        } else {
+            System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEES");
+        }
+
+        navx.reset(); // Reset gyro at startup
+
     
 
     // Configure AutoBuilder last
@@ -56,6 +76,18 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void moveForward(double leftSpeed, double rightSpeed) {
         
-        drive.tankDrive(0.5, 0.5);
+        drive.tankDrive(leftSpeed, rightSpeed);
+    }
+
+    public void stop() {
+        drive.tankDrive(0, 0);
+    }
+
+    public double getGyroAngle() {
+        return navx.getAngle(); // Returns the current gyro angle
+    }
+
+    public void resetGyro() {
+        navx.reset(); // Resets gyro angle to zero
     }
 }
