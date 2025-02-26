@@ -14,9 +14,9 @@ public final class Autos {
      CatchSubsystem catchSubsystem
      ) {
         return Commands.sequence(
-            new RollerCommandAuto(rollerSubsystem, 2.6),
+            new RollerCommandAuto(rollerSubsystem, 2.7),
             new DriveForwardAutoCommand(driveSubsystem,1,1,2),
-            new ExpandArmAutoCommand(expandArmSubsystem, 3.5),
+            new ExpandArmAutoCommand(expandArmSubsystem, 3.6),
             new ArmUDAutoCommand(armUDSubsystem, 1),
             new CatchAutoCommand(catchSubsystem, 2)
             // new InstantCommand(driveSubsystem::stop, driveSubsystem),

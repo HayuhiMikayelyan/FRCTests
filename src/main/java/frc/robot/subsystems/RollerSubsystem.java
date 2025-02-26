@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class RollerSubsystem extends SubsystemBase {
     private final SparkMax rollerMotor = new SparkMax(5, MotorType.kBrushed);
-    private final DigitalInput limitSwitch = new DigitalInput(0); // Change 0 to the correct port
+    private final DigitalInput limitLowSwitch = new DigitalInput(0); // Change 0 to the correct port
+    private final DigitalInput limitHighSwitch = new DigitalInput(1); // Change 0 to the correct port
 
 
     public RollerSubsystem() {}
@@ -17,8 +18,12 @@ public class RollerSubsystem extends SubsystemBase {
         rollerMotor.set(speed);
     }
 
-    public boolean isAtLimit() {
-        return !limitSwitch.get(); // Returns true when switch is pressed
+    public boolean isAtLowLimit() {
+        return !limitLowSwitch.get();
+    }
+
+    public boolean isAtHighLimit(){
+        return !limitHighSwitch.get();
     }
 
     public void stop() {

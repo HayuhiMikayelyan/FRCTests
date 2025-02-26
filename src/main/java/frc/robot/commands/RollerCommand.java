@@ -16,24 +16,32 @@ public class RollerCommand extends Command {
 
     @Override
     public void execute() {
-        
 
         if (controller.getRightBumperButton()){
-            rollerSubsystem.setRollerSpeed(1);
+            // if (rollerSubsystem.isAtHighLimit()) {
+            //     rollerSubsystem.setRollerSpeed(0);
+            // } else {
+                rollerSubsystem.setRollerSpeed(1);
+            // }
         } else if (controller.getRightTriggerAxis() > 0.0){
-            rollerSubsystem.setRollerSpeed(0.7);
+            // if (rollerSubsystem.isAtHighLimit()) {
+                // rollerSubsystem.setRollerSpeed(0);
+            // } else {
+                rollerSubsystem.setRollerSpeed(0.7);
+            // }
         } else if (controller.getLeftBumperButton()){
-            if (rollerSubsystem.isAtLimit()) {  // Stop if roller reaches end
+            if (rollerSubsystem.isAtLowLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
             }else{
-            rollerSubsystem.setRollerSpeed(-1);}
+                rollerSubsystem.setRollerSpeed(-1);
+            }
         } else if (controller.getLeftTriggerAxis() > 0.0){
-            if (rollerSubsystem.isAtLimit()) {  // Stop if roller reaches end
+            if (rollerSubsystem.isAtLowLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
-
             }else{
                 rollerSubsystem.setRollerSpeed(-0.7);
-}        } else {
+            }
+        } else {
             rollerSubsystem.setRollerSpeed(0);
         }
     }
