@@ -8,8 +8,6 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -43,21 +41,6 @@ public class DriveSubsystem extends SubsystemBase {
         rightLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         
         leftLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-
-        
-        if (navx.isConnected() == false) {
-            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
-        } else {
-            System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEES");
-        }
 
         navx.reset(); // Reset gyro at startup
 
