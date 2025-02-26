@@ -28,7 +28,7 @@ public class RollerCommandAuto extends Command {
     public void execute() {
         
         // if (!rollerSubsystem.isAtLimit()) {
-            rollerSubsystem.setRollerSpeed(0.5);
+            rollerSubsystem.setRollerSpeed(1);
         // }
     }
 

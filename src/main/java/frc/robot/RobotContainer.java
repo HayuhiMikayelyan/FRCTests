@@ -36,7 +36,7 @@ public class RobotContainer {
 
    public Command getAutonomousCommand() {
     System.out.println("Starting Autonomous Mode...");
-    return Autos.auto(driveSubsystem, rollerSubsystem);
+    return Autos.auto(driveSubsystem, rollerSubsystem,expandArmSubsystem, armUDSubsystem, catchSubsystem);
      }
 
    public Command getTeleopCommand() {

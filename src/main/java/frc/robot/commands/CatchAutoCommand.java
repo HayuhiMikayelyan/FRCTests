@@ -2,16 +2,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.subsystems.ExpandArmSubsystem;
+import frc.robot.subsystems.CatchSubsystem;
 
-public class ExpandArmAutoCommand extends Command{
-    private final ExpandArmSubsystem expandArmSubsystem;
+public class CatchAutoCommand extends Command{
+    private final CatchSubsystem catchSubsystem;
     private final double time;
     
-    public ExpandArmAutoCommand(ExpandArmSubsystem subsystem, double time) {
-         this.expandArmSubsystem = subsystem;
+    public CatchAutoCommand(CatchSubsystem subsystem, double time) {
+         this.catchSubsystem = subsystem;
          this.time = time;
-         addRequirements(expandArmSubsystem);
+         addRequirements(catchSubsystem);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ExpandArmAutoCommand extends Command{
 
     @Override
     public void execute() {
-        expandArmSubsystem.setExpandSpeed(0.7);
+        catchSubsystem.setCatchSpeed(1);
     }
 
     
@@ -33,7 +33,7 @@ public class ExpandArmAutoCommand extends Command{
 
     @Override
     public void end(boolean interrupted) {
-        expandArmSubsystem.setExpandSpeed(0);
+        catchSubsystem.setCatchSpeed(0);
         Constants.OperatorConstants.timer.reset();
     }
 }
