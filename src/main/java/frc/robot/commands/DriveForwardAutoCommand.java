@@ -1,15 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj.Timer;
 
 public class DriveForwardAutoCommand extends Command {
     private final DriveSubsystem driveSubsystem;
     private final double time;
     private final double leftSpeed;
     private final double rightSpeed;
-    private final Timer timer = new Timer();
 
     public DriveForwardAutoCommand(DriveSubsystem driveSubsystem, double leftSpeed, double rightSpeed, double time) {
         this.driveSubsystem = driveSubsystem;
@@ -21,8 +20,8 @@ public class DriveForwardAutoCommand extends Command {
 
     @Override
     public void initialize() {
-        timer.reset();
-        timer.start();
+        Constants.OperatorConstants.timer.reset();
+        Constants.OperatorConstants.timer.start();
     }
 
     @Override
@@ -33,7 +32,7 @@ public class DriveForwardAutoCommand extends Command {
     @Override
     public boolean isFinished() {
         
-        return timer.get() >= time;
+        return Constants.OperatorConstants.timer.get() >= time;
     }
 
     @Override

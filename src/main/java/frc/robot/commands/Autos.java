@@ -1,19 +1,23 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public final class Autos {
-    public static Command auto(DriveSubsystem driveSubsystem) {
+    public static Command auto(DriveSubsystem driveSubsystem, RollerSubsystem rollerSubsystem) {
         return Commands.sequence(
-            new DriveForwardAutoCommand(driveSubsystem,1,1,1), 
-            // new InstantCommand(driveSubsystem::stop, driveSubsystem),
-            new WaitCommand(1),// Move forward for 2 sec
-            new TurnCommandAuto(driveSubsystem, 89),
-
+            new RollerCommandAuto(rollerSubsystem, 0.8),
             new WaitCommand(2)// Move forward for 2 sec
+
+            // new DriveForwardAutoCommand(driveSubsystem,1,1,1), 
+            // new InstantCommand(driveSubsystem::stop, driveSubsystem),
+            // new WaitCommand(1),// Move forward for 2 sec
+            // new TurnCommandAuto(driveSubsystem, 89),
+
+            // new WaitCommand(2)// Move forward for 2 sec
 
 
             // new DriveForwardCommand(driveSubsystem,1,1 ,1), 

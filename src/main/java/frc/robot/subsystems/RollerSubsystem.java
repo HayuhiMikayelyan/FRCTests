@@ -20,4 +20,8 @@ public class RollerSubsystem extends SubsystemBase {
     public boolean isAtLimit() {
         return !limitSwitch.get(); // Returns true when switch is pressed
     }
+
+    public void stop() {
+        rollerMotor.set(0);
+    }
 }

@@ -16,6 +16,8 @@ public class DriveCommand extends Command {
      
      @Override
      public void execute() {
-         driveSubsystem.setMotorSpeeds(controller.getLeftY(),controller.getLeftY(), controller.getRightY(),controller.getRightY());
+        System.out.println("Drive command: "+controller.getLeftY());
+
+        driveSubsystem.setMotorSpeeds(controller.getLeftY(),controller.getLeftY(), controller.getRightY(),controller.getRightY());
      }
  }
