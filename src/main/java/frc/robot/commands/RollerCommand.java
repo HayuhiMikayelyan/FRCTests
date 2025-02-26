@@ -19,7 +19,7 @@ public class RollerCommand extends Command {
         
 
         if (controller.getRightBumperButton()){
-            rollerSubsystem.setRollerSpeed(0.9);
+            rollerSubsystem.setRollerSpeed(1);
         } else if (controller.getRightTriggerAxis() > 0.0){
             rollerSubsystem.setRollerSpeed(0.7);
         } else if (controller.getLeftBumperButton()){
@@ -32,7 +32,7 @@ public class RollerCommand extends Command {
                 rollerSubsystem.setRollerSpeed(0);
 
             }else{
-                rollerSubsystem.setRollerSpeed(-0.3);
+                rollerSubsystem.setRollerSpeed(-0.7);
 }        } else {
             rollerSubsystem.setRollerSpeed(0);
         }

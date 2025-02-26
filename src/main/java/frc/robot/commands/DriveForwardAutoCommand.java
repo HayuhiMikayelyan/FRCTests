@@ -4,39 +4,40 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 
-public class DriveForwardCommand extends Command {
+public class DriveForwardAutoCommand extends Command {
     private final DriveSubsystem driveSubsystem;
-    private final double speed;
     private final double time;
+    private final double leftSpeed;
+    private final double rightSpeed;
     private final Timer timer = new Timer();
 
-    public DriveForwardCommand(DriveSubsystem driveSubsystem, double speed, double time) {
+    public DriveForwardAutoCommand(DriveSubsystem driveSubsystem, double leftSpeed, double rightSpeed, double time) {
         this.driveSubsystem = driveSubsystem;
-        this.speed = speed;
         this.time = time;
+        this.leftSpeed = leftSpeed;
+        this.rightSpeed = rightSpeed;
         addRequirements(driveSubsystem);
     }
 
     @Override
     public void initialize() {
         timer.reset();
-
         timer.start();
     }
 
     @Override
     public void execute() {
-        // driveSubsystem.moveForward(speed, speed); // Move forward
+        driveSubsystem.setMotorSpeedsAuto(leftSpeed,leftSpeed,rightSpeed,rightSpeed);
     }
 
     @Override
     public boolean isFinished() {
         
-        return timer.get() >= time; // Stop after the set time
+        return timer.get() >= time;
     }
 
     @Override
     public void end(boolean interrupted) {
-        // driveSubsystem.tankDrive(0, 0); // Stop the robot
+        driveSubsystem.stop();;
     }
 }

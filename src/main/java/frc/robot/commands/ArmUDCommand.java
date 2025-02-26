@@ -18,7 +18,7 @@ public class ArmUDCommand extends Command{
     public void execute() {
         int pov = controller.getPOV();
         if (pov==0){
-            armUDSubsystem.setUDSpeed(0.8);
+            armUDSubsystem.setUDSpeed(1);
         }else if (pov==180) {
             armUDSubsystem.setUDSpeed(-1);
         } 

@@ -20,7 +20,7 @@ public class DriveSubsystem extends SubsystemBase {
     private final AHRS navx = new AHRS(I2C.Port.kMXP);
 
     public DriveSubsystem() {
-        // Configure motors
+
         driveConfig.smartCurrentLimit(60);
         driveConfig.voltageCompensation(12);
 
@@ -29,35 +29,38 @@ public class DriveSubsystem extends SubsystemBase {
         rightFront.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         rightRear.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-        // Check if navX is connected
-        if (!navx.isConnected()) {
-            System.out.println("NAVX NOT CONNECTED!");
-        } else {
-            System.out.println("NAVX CONNECTED!");
-        }
-        navx.reset(); // Reset gyro at startup
+        navx.reset();
     }
 
-    // Method to control each motor separately
     public void setMotorSpeeds(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
-        int drive = 3;
-        leftFront.set(leftFrontSpeed/4);
-        leftRear.set(leftRearSpeed/4);
-        rightFront.set(rightFrontSpeed/(-drive));
-        rightRear.set(rightRearSpeed/(-drive));
+        int driveLeft = 3;
+        int driveRight = 4;
+        leftFront.set(leftFrontSpeed/driveLeft);
+        leftRear.set(leftRearSpeed/driveLeft);
+        rightFront.set(rightFrontSpeed/(-driveRight));
+        rightRear.set(rightRearSpeed/(-driveRight));
+        System.out.println("aaaaa  "+getGyroAngle());
     }
 
-    // Stop all motors
+    public void setMotorSpeedsAuto(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
+        double driveLeft = -4;
+        double driveRight = -4;
+        leftFront.set(leftFrontSpeed/driveLeft);
+        leftRear.set(leftRearSpeed/driveLeft);
+        rightFront.set(rightFrontSpeed/(-driveRight));
+        rightRear.set(rightRearSpeed/(-driveRight));
+    }
+
     public void stop() {
+        navx.reset();
         setMotorSpeeds(0, 0, 0, 0);
     }
 
-    // Get gyro angle
     public double getGyroAngle() {
-        return navx.getYaw(); // Instead of getAngle()
+        double angle =  navx.getYaw();
+        return angle;
     }
 
-    // Reset gyro
     public void resetGyro() {
         navx.reset();
     }
