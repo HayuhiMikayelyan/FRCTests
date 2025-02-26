@@ -8,88 +8,57 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-
 public class DriveSubsystem extends SubsystemBase {
-    private final SparkMax leftLeader = new SparkMax(1, MotorType.kBrushed);
-    private final SparkMax leftFollower = new SparkMax(2, MotorType.kBrushed);
-    private final SparkMax rightLeader = new SparkMax(4, MotorType.kBrushed);
-    private final SparkMax rightFollower = new SparkMax(6, MotorType.kBrushed);
-    
-    private final DifferentialDrive drive = new DifferentialDrive(leftLeader, rightLeader);
+    private final SparkMax leftFront = new SparkMax(1, MotorType.kBrushed);
+    private final SparkMax leftRear = new SparkMax(2, MotorType.kBrushed);
+    private final SparkMax rightFront = new SparkMax(4, MotorType.kBrushed);
+    private final SparkMax rightRear = new SparkMax(6, MotorType.kBrushed);
+
     private final SparkMaxConfig driveConfig = new SparkMaxConfig();
+    private final AHRS navx = new AHRS(I2C.Port.kMXP);
 
-    AHRS navx = new AHRS(I2C.Port.kMXP);
-
-    
-    
     public DriveSubsystem() {
-
+        // Configure motors
         driveConfig.smartCurrentLimit(60);
         driveConfig.voltageCompensation(12);
 
-        driveConfig.follow(leftLeader);
-        leftFollower.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        leftFront.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        leftRear.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rightFront.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rightRear.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-        driveConfig.follow(rightLeader);
-        rightFollower.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-        driveConfig.disableFollowerMode();
-        rightLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        
-        leftLeader.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESET NAVX");
-
-        
-        if (navx.isConnected() == false) {
-            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
+        // Check if navX is connected
+        if (!navx.isConnected()) {
+            System.out.println("NAVX NOT CONNECTED!");
         } else {
-            System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEES");
+            System.out.println("NAVX CONNECTED!");
         }
-
         navx.reset(); // Reset gyro at startup
-
-    
-
-    // Configure AutoBuilder last
     }
 
-
-    public Command driveCommand() {
-        return runOnce(() -> tankDrive(0,0));
-    }
-    
-    public void tankDrive(double leftSpeed, double rightSpeed) {
-        double delay = 2;
-        drive.tankDrive(leftSpeed/(-delay), rightSpeed/(-delay));
-    }
-
-    public void moveForward(double leftSpeed, double rightSpeed) {
-        System.out.println("NAVXXXXXXXXXXXXXXX  "+getGyroAngle());
-        drive.tankDrive(leftSpeed, rightSpeed);
+    // Method to control each motor separately
+    public void setMotorSpeeds(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
+        int drive = 3;
+        leftFront.set(leftFrontSpeed/4);
+        leftRear.set(leftRearSpeed/4);
+        rightFront.set(rightFrontSpeed/(-drive));
+        rightRear.set(rightRearSpeed/(-drive));
     }
 
+    // Stop all motors
     public void stop() {
-        drive.tankDrive(0, 0);
+        setMotorSpeeds(0, 0, 0, 0);
     }
 
+    // Get gyro angle
     public double getGyroAngle() {
-        return navx.getAngle(); // Returns the current gyro angle
+        return navx.getYaw(); // Instead of getAngle()
     }
 
+    // Reset gyro
     public void resetGyro() {
-        navx.reset(); // Resets gyro angle to zero
+        navx.reset();
     }
 }

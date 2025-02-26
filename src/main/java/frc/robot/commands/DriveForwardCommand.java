@@ -20,21 +20,23 @@ public class DriveForwardCommand extends Command {
     @Override
     public void initialize() {
         timer.reset();
+
         timer.start();
     }
 
     @Override
     public void execute() {
-        driveSubsystem.moveForward(speed, speed); // Move forward
+        // driveSubsystem.moveForward(speed, speed); // Move forward
     }
 
     @Override
     public boolean isFinished() {
+        
         return timer.get() >= time; // Stop after the set time
     }
 
     @Override
     public void end(boolean interrupted) {
-        driveSubsystem.tankDrive(0, 0); // Stop the robot
+        // driveSubsystem.tankDrive(0, 0); // Stop the robot
     }
 }

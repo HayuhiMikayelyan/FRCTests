@@ -12,8 +12,8 @@ public class TurnPIDCommand extends Command {
     public TurnPIDCommand(DriveSubsystem driveSubsystem, double targetAngle) {
         this.driveSubsystem = driveSubsystem;
         this.targetAngle = targetAngle;
-        pidController = new PIDController(0.02, 0, 0.001); // Tune PID values for accuracy
-        pidController.setTolerance(2.0); // Allowable error margin
+        pidController = new PIDController(0.025, 0, 0.001); // Increase P gain
+        pidController.setTolerance(1.0); // Allowable error margin
 
         addRequirements(driveSubsystem);
     }
@@ -26,11 +26,15 @@ public class TurnPIDCommand extends Command {
 
     @Override
     public void execute() {
-        double speed = pidController.calculate(driveSubsystem.getGyroAngle());
-        speed = Math.max(-0.5, Math.min(0.5, speed)); // Limit speed to -0.5 to 0.5
-        System.out.println("Speeeeeeeeeeeeed  "+driveSubsystem.getGyroAngle());
-        driveSubsystem.moveForward(speed, -speed); // Rotate the robot
+    double currentAngle = driveSubsystem.getGyroAngle();
+    double speed = pidController.calculate(currentAngle);
+    speed = Math.max(-0.5, Math.min(0.5, speed)); // Limit speed to -0.5 to 0.5
+
+    System.out.println("CURRENT ANGLE: " + currentAngle + " | Target: " + targetAngle);
+    
+    // driveSubsystem.moveForward(speed, -speed); // Rotate the robot
     }
+
 
     @Override
     public boolean isFinished() {
