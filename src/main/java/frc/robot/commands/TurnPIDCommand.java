@@ -11,9 +11,9 @@ public class TurnPIDCommand extends Command {
 
     public TurnPIDCommand(DriveSubsystem driveSubsystem, double targetAngle) {
         this.driveSubsystem = driveSubsystem;
-        this.targetAngle = targetAngle;
-        pidController = new PIDController(0.025, 0, 0.001); // Increase P gain
-        pidController.setTolerance(1.0); // Allowable error margin
+        this.targetAngle = normalizeAngle(targetAngle);
+        pidController = new PIDController(0.03, 0, 0.002); // Adjusted PID values
+        pidController.setTolerance(2.0); // Allowable error margin
 
         addRequirements(driveSubsystem);
     }
@@ -44,5 +44,9 @@ public class TurnPIDCommand extends Command {
     @Override
     public void end(boolean interrupted) {
         driveSubsystem.stop();
+    }
+
+    private double normalizeAngle(double angle) {
+        return ((angle % 360) + 360) % 360; // Ensures angle is always within 0-359
     }
 }
