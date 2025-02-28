@@ -23,7 +23,7 @@ public class HangCommand extends Command {
             hangSubsystem.setHangSpeed(0.4);
 
         } else if (controller.getLeftBumperButton()) {
-            hangSubsystem.setHangSpeed(-0.25);
+            hangSubsystem.setHangSpeed(-1);
 
         } else if (controller.getLeftTriggerAxis() > 0.0) {
             hangSubsystem.setHangSpeed(-0.25);

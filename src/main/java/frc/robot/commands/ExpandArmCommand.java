@@ -18,6 +18,7 @@ public class ExpandArmCommand extends Command{
     public void execute() {
         if (controller.getYButton()){
             expandArmSubsystem.setExpandSpeed(0.7);
+            System.out.println("hadkh");    
         } else if (controller.getAButton()){
             expandArmSubsystem.setExpandSpeed(-0.7);
         } else {
