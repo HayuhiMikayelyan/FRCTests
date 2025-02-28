@@ -21,7 +21,7 @@ public class ArmUDCommand extends Command{
             armUDSubsystem.setUDSpeed(1);
         }else if (pov==180) {
             armUDSubsystem.setUDSpeed(-1);
-        } 
+        }  
         else {
             armUDSubsystem.setUDSpeed(0);
         }

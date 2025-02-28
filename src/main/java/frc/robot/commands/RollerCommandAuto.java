@@ -7,11 +7,13 @@ import frc.robot.subsystems.RollerSubsystem;
 public class RollerCommandAuto extends Command {
     private final RollerSubsystem rollerSubsystem;
     private final double time;
+    private final double speed;
 
     
-    public RollerCommandAuto(RollerSubsystem subsystem, double time) {
+    public RollerCommandAuto(RollerSubsystem subsystem,  double speed, double time) {
          this.rollerSubsystem = subsystem;
          this.time = time;
+         this.speed = speed;
          addRequirements(rollerSubsystem);
     }
 
@@ -24,9 +26,11 @@ public class RollerCommandAuto extends Command {
     @Override
     public void execute() {
         
-        // if (!rollerSubsystem.isAtLimit()) {
-            rollerSubsystem.setRollerSpeed(1);
-        // }
+        if (!rollerSubsystem.isAtHighLimit()) {
+            rollerSubsystem.setRollerSpeed(speed);
+        }else{
+            rollerSubsystem.setRollerSpeed(0);
+        }
     }
 
     @Override
