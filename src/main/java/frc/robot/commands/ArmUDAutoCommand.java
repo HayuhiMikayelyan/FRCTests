@@ -7,11 +7,9 @@ import frc.robot.subsystems.ArmUDSubsystem;
 public class ArmUDAutoCommand extends Command{
     private final ArmUDSubsystem armUDSubsystem;
     private final double time;
-    private final double speed;
     
-    public ArmUDAutoCommand(ArmUDSubsystem subsystem, double speed, double time) {
+    public ArmUDAutoCommand(ArmUDSubsystem subsystem, double time) {
          this.armUDSubsystem = subsystem;
-         this.speed = speed;
          this.time = time;
          addRequirements(armUDSubsystem);
     }
@@ -24,7 +22,7 @@ public class ArmUDAutoCommand extends Command{
 
     @Override
     public void execute() {
-        armUDSubsystem.setUDSpeed(speed);
+        armUDSubsystem.setUDSpeed(1);
     }
 
     

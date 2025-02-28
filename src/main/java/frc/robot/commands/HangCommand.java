@@ -16,12 +16,28 @@ public class HangCommand extends Command {
 
     @Override
     public void execute() {
-        if (controller.getAButton()){
-        hangSubsystem.setHangSpeed(-1);
-        } else if (controller.getYButton()){
-        hangSubsystem.setHangSpeed(1);
+
+        if (controller.getRightBumperButton()) {
+            hangSubsystem.setHangSpeed(1);
+        } else if (controller.getRightTriggerAxis() > 0.0) {
+            hangSubsystem.setHangSpeed(0.4);
+
+        } else if (controller.getLeftBumperButton()) {
+            hangSubsystem.setHangSpeed(-0.25);
+
+        } else if (controller.getLeftTriggerAxis() > 0.0) {
+            hangSubsystem.setHangSpeed(-0.25);
+
         } else {
-        hangSubsystem.setHangSpeed(0);
+            hangSubsystem.setHangSpeed(0);
         }
+
+        // if (controller.getAButton()){
+        // hangSubsystem.setHangSpeed(-1);
+        // } else if (controller.getYButton()){
+        // hangSubsystem.setHangSpeed(0.8);
+        // } else {
+        // hangSubsystem.setHangSpeed(0);
+        // }
     }
 }

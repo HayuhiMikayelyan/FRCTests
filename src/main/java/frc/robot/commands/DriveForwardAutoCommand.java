@@ -22,8 +22,6 @@ public class DriveForwardAutoCommand extends Command {
     public void initialize() {
         Constants.OperatorConstants.timer.reset();
         Constants.OperatorConstants.timer.start();
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa a "+(Constants.OperatorConstants.dcFromReefToStartLine/Constants.OperatorConstants.robotSpeed));
-
     }
 
     @Override
