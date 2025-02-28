@@ -3,6 +3,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.Autos.AutoMode;
 import frc.robot.commands.Teleop;
 import frc.robot.subsystems.ArmUDSubsystem;
 import frc.robot.subsystems.CatchSubsystem;
@@ -36,8 +37,9 @@ public class RobotContainer {
 
    public Command getAutonomousCommand() {
     System.out.println("Starting Autonomous Mode...");
-    return Autos.auto(driveSubsystem, rollerSubsystem,expandArmSubsystem, armUDSubsystem, catchSubsystem);
-     }
+    return Autos.auto(AutoMode.CENTER, driveSubsystem, rollerSubsystem, expandArmSubsystem, armUDSubsystem,
+        catchSubsystem);
+  }
 
    public Command getTeleopCommand() {
       return Teleop.teleop(driveSubsystem, rollerSubsystem,
