@@ -33,13 +33,13 @@ public class RollerCommand extends Command {
             if (rollerSubsystem.isAtLowLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
             }else{
-                // rollerSubsystem.setRollerSpeed(-1);
+                rollerSubsystem.setRollerSpeed(-1);
             }
         } else if (controller.getLeftTriggerAxis() > 0.0){
             if (rollerSubsystem.isAtLowLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
             }else{
-                rollerSubsystem.setRollerSpeed(-0.8);
+                rollerSubsystem.setRollerSpeed(-0.7);
             }
         } else {
             rollerSubsystem.setRollerSpeed(0);

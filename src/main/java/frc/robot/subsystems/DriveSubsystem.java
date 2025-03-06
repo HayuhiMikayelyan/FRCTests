@@ -33,8 +33,8 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void setMotorSpeeds(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
-        double driveLeft = 3.5;
-        double driveRight = 3.5;
+        double driveLeft = 3;
+        double driveRight = 2.5;
         leftFront.set(leftFrontSpeed/driveLeft);
         leftRear.set(leftRearSpeed/driveLeft);
         rightFront.set(rightFrontSpeed/(-driveRight));
@@ -44,7 +44,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void setMotorSpeedsAuto(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
         double driveLeft = -4;
-        double driveRight = -4;
+        double driveRight = -3.5;
         leftFront.set(leftFrontSpeed/driveLeft);
         leftRear.set(leftRearSpeed/driveLeft);
         rightFront.set(rightFrontSpeed/(-driveRight));
