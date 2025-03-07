@@ -37,7 +37,7 @@ public class RobotContainer {
 
    public Command getAutonomousCommand() {
     System.out.println("Starting Autonomous Mode...");
-    return Autos.auto(AutoMode.CENTER, driveSubsystem, rollerSubsystem, expandArmSubsystem, armUDSubsystem,
+    return Autos.auto(AutoMode.RIGHT, driveSubsystem, rollerSubsystem, expandArmSubsystem, armUDSubsystem,
         catchSubsystem);
   }
 

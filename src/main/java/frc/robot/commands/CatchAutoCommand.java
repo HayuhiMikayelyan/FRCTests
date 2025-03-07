@@ -7,10 +7,12 @@ import frc.robot.subsystems.CatchSubsystem;
 public class CatchAutoCommand extends Command{
     private final CatchSubsystem catchSubsystem;
     private final double time;
+    private final double speed;
     
-    public CatchAutoCommand(CatchSubsystem subsystem, double time) {
+    public CatchAutoCommand(CatchSubsystem subsystem, double speed, double time) {
          this.catchSubsystem = subsystem;
          this.time = time;
+         this.speed = speed;
          addRequirements(catchSubsystem);
     }
 
@@ -22,7 +24,7 @@ public class CatchAutoCommand extends Command{
 
     @Override
     public void execute() {
-        catchSubsystem.setCatchSpeed(1);
+        catchSubsystem.setCatchSpeed(speed);
     }
 
     

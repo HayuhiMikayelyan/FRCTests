@@ -10,7 +10,7 @@ public class TurnCommandAuto extends Command {
 
     public TurnCommandAuto(DriveSubsystem driveSubsystem, double targetAngle) {
         this.driveSubsystem = driveSubsystem;
-        this.targetAngle = normalizeAngle(targetAngle);
+        this.targetAngle = targetAngle;
         // pidController = new PIDController(0.03, 0, 0.002); // Adjusted PID values
         // pidController.setTolerance(2.0); // Allowable error margin
 
@@ -26,8 +26,11 @@ public class TurnCommandAuto extends Command {
     @Override
     public void execute() {
         System.out.println("Angleeeeeeeeeeeee "+driveSubsystem.getGyroAngle());
-
-        driveSubsystem.setMotorSpeedsAuto(0.7,0.7, -0.7,-0.7);
+        if (targetAngle>0) {
+            driveSubsystem.setMotorSpeedsAuto(1.2,1.2, -1.2,-1.2);
+        }else{
+            driveSubsystem.setMotorSpeedsAuto(-1.2,-1.2, 1.2,1.2);
+        }
     // double currentAngle = driveSubsystem.getGyroAngle();
     // double speed = pidController.calculate(currentAngle);
     // speed = Math.max(-0.5, Math.min(0.5, speed)); // Limit speed to -0.5 to 0.5
@@ -38,8 +41,11 @@ public class TurnCommandAuto extends Command {
 
     @Override
     public boolean isFinished() {
+        if (targetAngle>0) {
+            return driveSubsystem.getGyroAngle() >= targetAngle;
+        }
+        return driveSubsystem.getGyroAngle() <= targetAngle;
 
-        return driveSubsystem.getGyroAngle() > targetAngle;
         // return pidController.atSetpoint();
     }
 
@@ -49,7 +55,5 @@ public class TurnCommandAuto extends Command {
         
     }
 
-    private double normalizeAngle(double angle) {
-        return ((angle % 360) + 360) % 360; // Ensures angle is always within 0-359
-    }
+    
 }
