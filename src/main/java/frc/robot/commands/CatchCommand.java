@@ -16,13 +16,16 @@ public class CatchCommand extends Command {
 
     @Override
     public void execute() {
-        if (controller.getBButton()) {
+        if (controller.getXButton()) {
+            System.out.println("X pressed");
             // if (catchSubsystem.isAtOpenLimit()) {
             //     catchSubsystem.setCatchSpeed(0);
             // } else {
                 catchSubsystem.setCatchSpeed(1);
             // }
-        } else if (controller.getXButton()) {
+        } else if (controller.getBButton()) {
+            System.out.println("B pressed");
+
             if (catchSubsystem.isAtOpenLimit()) {
                 catchSubsystem.setCatchSpeed(0);
             } else {
