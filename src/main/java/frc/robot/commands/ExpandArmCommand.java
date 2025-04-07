@@ -17,10 +17,10 @@ public class ExpandArmCommand extends Command{
     @Override
     public void execute() {
         if (controller.getYButton()){
-            expandArmSubsystem.setExpandSpeed(0.7);
+            expandArmSubsystem.setExpandSpeed(1);
             System.out.println("hadkh");    
         } else if (controller.getAButton()){
-            expandArmSubsystem.setExpandSpeed(-0.7);
+            expandArmSubsystem.setExpandSpeed(-1);
         } else {
             expandArmSubsystem.setExpandSpeed(0);
         }
