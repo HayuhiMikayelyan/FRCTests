@@ -21,16 +21,17 @@ public class CatchCommand extends Command {
             // if (catchSubsystem.isAtOpenLimit()) {
             //     catchSubsystem.setCatchSpeed(0);
             // } else {
-                catchSubsystem.setCatchSpeed(1);
+                if (catchSubsystem.isAtOpenLimit()) {
+                    catchSubsystem.setCatchSpeed(0);
+                } else {
+                    catchSubsystem.setCatchSpeed(1);
+                }
             // }
         } else if (controller.getBButton()) {
             System.out.println("B pressed");
+            catchSubsystem.setCatchSpeed(-1);
 
-            if (catchSubsystem.isAtOpenLimit()) {
-                catchSubsystem.setCatchSpeed(0);
-            } else {
-                catchSubsystem.setCatchSpeed(-1);
-            }
+            
         } else {
             catchSubsystem.setCatchSpeed(0);
         }
