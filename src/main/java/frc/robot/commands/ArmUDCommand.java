@@ -16,10 +16,22 @@ public class ArmUDCommand extends Command {
 
     @Override
     public void execute() {
-        int pov = controller.getPOV();
-        if (pov == 0) {
+        // int pov = controller.getPOV();
+        // if (pov == 0) {
+        //     armUDSubsystem.setUDSpeed(1);
+        // } else if (pov == 180) {
+        //     if (armUDSubsystem.isAtLowLimit()) {
+        //         armUDSubsystem.setUDSpeed(0);
+        //     } else {
+        //         armUDSubsystem.setUDSpeed(-1);
+        //     }
+        // } else {
+        //     armUDSubsystem.setUDSpeed(0);
+        // }
+
+        if (controller.getRightTriggerAxis()>0) {
             armUDSubsystem.setUDSpeed(1);
-        } else if (pov == 180) {
+        } else if (controller.getLeftTriggerAxis()>0) {
             if (armUDSubsystem.isAtLowLimit()) {
                 armUDSubsystem.setUDSpeed(0);
             } else {

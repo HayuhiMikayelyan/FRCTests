@@ -21,6 +21,9 @@ public class RollerCommand extends Command {
 
     @Override
     public void execute() {
+        int pov = controller.getPOV();
+        System.out.println("povvvvvvv  "+pov);
+
         System.out.println("Encoder valueeee   " + rollerSubsystem.getRotations());
         if (isRightBumperPressed == 1 && rollerSubsystem.getRotations() < 20) {
             if (rollerSubsystem.isAtHighLimit()) {
@@ -44,35 +47,47 @@ public class RollerCommand extends Command {
             } else {
                 rollerSubsystem.setRollerSpeed(0.7);
             }
+        }else if (isRightBumperPressed == 2 && rollerSubsystem.getRotations() > 60) {
+            if (rollerSubsystem.isAtLowLimit()) {
+                rollerSubsystem.setRollerSpeed(0);
+            } else {
+                rollerSubsystem.setRollerSpeed(-0.7);
+            }
         } else {
             isLeftBumperPressed = 0;
         }
 
-        if (controller.getRightBumperButton()) {
+        if (pov == 0) {
+            isLeftBumperPressed = 0;
             if (rollerSubsystem.getRotations() > 0 && rollerSubsystem.getRotations() < 20) {
                 isRightBumperPressed = 1;
-            } else if (rollerSubsystem.getRotations() > 20) {
+            } else if (rollerSubsystem.getRotations() >=20) {
                 isRightBumperPressed = 2;
             }
 
-        } else if (controller.getLeftTriggerAxis() > 0.0) {
+        } else if (controller.getLeftBumperButton()) {
             isLeftBumperPressed = 0;
             isRightBumperPressed = 0;
             if (rollerSubsystem.isAtHighLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
             } else {
-                rollerSubsystem.setRollerSpeed(0.7);
+                rollerSubsystem.setRollerSpeed(1);
             }
-        } else if (controller.getLeftBumperButton()) {
-            isLeftBumperPressed = 1;
+        } else if (pov==90) {
+            if (rollerSubsystem.getRotations() > 0 && rollerSubsystem.getRotations() < 60) {
+                isLeftBumperPressed = 1;
+            } else if (rollerSubsystem.getRotations() > 60) {
+                isLeftBumperPressed = 2;
+            }
             isRightBumperPressed = 0;
-        } else if (controller.getRightTriggerAxis() > 0.0) {
+
+        } else if (controller.getRightBumperButton()) {
             isLeftBumperPressed = 0;
             isRightBumperPressed = 0;
             if (rollerSubsystem.isAtLowLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
             } else {
-                rollerSubsystem.setRollerSpeed(-0.7);
+                rollerSubsystem.setRollerSpeed(-1);
             }
         } else {
             if (isLeftBumperPressed == 0 && isRightBumperPressed == 0) {
