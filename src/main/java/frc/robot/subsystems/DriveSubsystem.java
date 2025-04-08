@@ -19,6 +19,8 @@ public class DriveSubsystem extends SubsystemBase {
     private final SparkMaxConfig driveConfig = new SparkMaxConfig();
     private final AHRS navx = new AHRS(I2C.Port.kMXP);
 
+    
+
     public DriveSubsystem() {
 
         driveConfig.smartCurrentLimit(60);
@@ -33,8 +35,8 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void setMotorSpeeds(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
-        double driveLeft = 2;
-        double driveRight = 2;
+        double driveLeft = 1.5;
+        double driveRight = 1.5;
         leftFront.set(leftFrontSpeed/driveLeft);
         leftRear.set(leftRearSpeed/driveLeft);
         rightFront.set(rightFrontSpeed/(-driveRight));
@@ -43,8 +45,8 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void setMotorSpeedsAuto(double leftFrontSpeed, double leftRearSpeed, double rightFrontSpeed, double rightRearSpeed) {
-        double driveLeft = -4;
-        double driveRight = -3.5;
+        double driveLeft = -3;
+        double driveRight = -3;
         leftFront.set(leftFrontSpeed/driveLeft);
         leftRear.set(leftRearSpeed/driveLeft);
         rightFront.set(rightFrontSpeed/(-driveRight));

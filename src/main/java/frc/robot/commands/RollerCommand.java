@@ -8,10 +8,10 @@ public class RollerCommand extends Command {
     private final RollerSubsystem rollerSubsystem;
     private final XboxController controller;
 
-    private int level_1 = 20;
-    private int level_2 = 60;
-    private int level_3 = 100;
-    private int level_4 = 140;
+    private int level_1;
+    private int level_2;
+    private int level_3;
+    private int level_4;
 
     private int isButtonPressedLevel_1 = 0;
     private int isButtonPressedLevel_2 = 0;
@@ -23,6 +23,10 @@ public class RollerCommand extends Command {
         this.controller = controller;
         addRequirements(rollerSubsystem);
         // rollerSubsystem.resetEncoder();
+        level_1 = rollerSubsystem.level_1;
+        level_2 = rollerSubsystem.level_2;
+        level_3 = rollerSubsystem.level_3;
+        level_4 = rollerSubsystem.level_4;
     }
 
     @Override

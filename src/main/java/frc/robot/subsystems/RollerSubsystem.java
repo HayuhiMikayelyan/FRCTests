@@ -23,6 +23,11 @@ public class RollerSubsystem extends SubsystemBase {
     private final DigitalInput limitLowSwitch = new DigitalInput(0); // Change 0 to the correct port
     private final DigitalInput limitHighSwitch = new DigitalInput(1); // Change 0 to the correct port
 
+    public int level_1 = 20;
+    public int level_2 = 60;
+    public int level_3 = 100;
+    public int level_4 = 140;
+
     public RollerSubsystem() {
         SparkMaxConfig config = new SparkMaxConfig();
         config.inverted(false) // Set according to your setup

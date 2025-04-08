@@ -23,7 +23,7 @@ public final class Autos {
             case LEFT:
             return Commands.sequence(
                 new CatchAutoCommand(catchSubsystem, -1, 1),
-                new RollerCommandAuto(rollerSubsystem, 0.8, 4),
+                new RollerCommandAuto(rollerSubsystem, 0.8),
                 new WaitCommand(0.5),
                 // center
                 new DriveForwardAutoCommand(driveSubsystem, 1, 1, 4),
@@ -32,13 +32,13 @@ public final class Autos {
                 new DriveForwardAutoCommand(driveSubsystem, 1, 1, 0.8),
                 new WaitCommand(0.5),
                 new ArmUDAutoCommand(armUDSubsystem, 1, 0.6),
-                new RollerCommandAuto(rollerSubsystem, -0.8, 0.1),
+                new RollerCommandAuto(rollerSubsystem, -0.8),
                 new WaitCommand(1),
                 new CatchAutoCommand(catchSubsystem, 1, 1));
             case RIGHT:
                 return Commands.sequence(
                     new CatchAutoCommand(catchSubsystem, -1, 1),
-                    new RollerCommandAuto(rollerSubsystem, 0.8, 4),
+                    new RollerCommandAuto(rollerSubsystem, 0.8),
                     new WaitCommand(0.5),
                     // center
                     new DriveForwardAutoCommand(driveSubsystem, 1, 1, 4),
@@ -47,7 +47,7 @@ public final class Autos {
                     new DriveForwardAutoCommand(driveSubsystem, 1, 1, 0.8),
                     new WaitCommand(0.5),
                     new ArmUDAutoCommand(armUDSubsystem, 1, 0.6),
-                    new RollerCommandAuto(rollerSubsystem, -0.8, 0.1),
+                    new RollerCommandAuto(rollerSubsystem, -0.8),
                     new WaitCommand(1),
                     new CatchAutoCommand(catchSubsystem, 1, 1));
 
@@ -55,26 +55,18 @@ public final class Autos {
             default:
                 return Commands.sequence(
                         new CatchAutoCommand(catchSubsystem, -1, 1),
-                        new RollerCommandAuto(rollerSubsystem, 0.8, 4),
-                        new WaitCommand(0.5),
+                        new RollerCommandAuto(rollerSubsystem, 0.8),
                         // center
-                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 1),
-                        new ExpandArmAutoCommand(expandArmSubsystem, 0.7, 4),
-                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 0.8),
-                        new WaitCommand(0.5),
-                        new ArmUDAutoCommand(armUDSubsystem, 1, 0.6),
-                        new RollerCommandAuto(rollerSubsystem, -0.8, 0.1),
-                        new WaitCommand(1),
+                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 0.5),
+                        // new ExpandArmAutoCommand(expandArmSubsystem, 0.7, 4),
+                        // new DriveForwardAutoCommand(driveSubsystem, 1, 1, 0.8),
+                        // new WaitCommand(0.5),
+                        // new ArmUDAutoCommand(armUDSubsystem, 1, 0.6),
+                        // new RollerCommandAuto(rollerSubsystem, -0.8, 0.1),
+                        // new WaitCommand(1),
                         new CatchAutoCommand(catchSubsystem, 1, 1)
 
-                // new DriveForwardAutoCommand(driveSubsystem,1,1 ,1),
-                // new
-                // DriveForwardAutoCommand(driveSubsystem,1,1,(Constants.OperatorConstants.dcFrom1To2/Constants.OperatorConstants.robotSpeed)),
-                // new TurnCommandAuto(driveSubsystem, 45),
-                // new
-                // DriveForwardAutoCommand(driveSubsystem,1,1,(Constants.OperatorConstants.dcFrom2To3/Constants.OperatorConstants.robotSpeed)),
-
-                // new WaitCommand(2),
+              
                 );
         }
     }

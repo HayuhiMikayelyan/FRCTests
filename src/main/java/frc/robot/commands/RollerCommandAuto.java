@@ -2,44 +2,42 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.RollerSubsystem;  
+import frc.robot.commands.RollerCommand;
 
 public class RollerCommandAuto extends Command {
     private final RollerSubsystem rollerSubsystem;
-    private final double time;
     private final double speed;
 
     
-    public RollerCommandAuto(RollerSubsystem subsystem,  double speed, double time) {
+    public RollerCommandAuto(RollerSubsystem subsystem,  double speed) {
          this.rollerSubsystem = subsystem;
-         this.time = time;
          this.speed = speed;
          addRequirements(rollerSubsystem);
     }
 
     @Override
     public void initialize() {
-        Constants.OperatorConstants.timer.reset();
-        Constants.OperatorConstants.timer.start();
+        // Constants.OperatorConstants.timer.reset();
+        // Constants.OperatorConstants.timer.start();
     }
 
     @Override
     public void execute() {
-        
-        if (!rollerSubsystem.isAtHighLimit()) {
-            rollerSubsystem.setRollerSpeed(speed);
-        }else{
-            rollerSubsystem.setRollerSpeed(0);
+        System.out.println("Encoder:    "+rollerSubsystem.getRotations());
+        if (rollerSubsystem.getRotations() < rollerSubsystem.level_1) {
+            rollerSubsystem.moveToPosition(rollerSubsystem.getRotations() + 10,true); // quick move up
         }
     }
 
     @Override
     public boolean isFinished() {
-        return Constants.OperatorConstants.timer.get() >= time;
+        return rollerSubsystem.getRotations()>=rollerSubsystem.level_1;
     }
 
     @Override
     public void end(boolean interrupted) {
+        System.out.println("stop");
         rollerSubsystem.stop();
     }
 }   
