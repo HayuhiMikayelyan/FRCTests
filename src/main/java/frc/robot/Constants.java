@@ -18,6 +18,7 @@ public final class Constants {
     // Make the timer static so it can be used globally
     public static final Timer timer = new Timer();
 
+    public static boolean isButtonPressedLevel_0 = false;
    
   }
 }

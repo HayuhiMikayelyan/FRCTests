@@ -23,6 +23,7 @@ public class RollerSubsystem extends SubsystemBase {
     private final DigitalInput limitLowSwitch = new DigitalInput(0); // Change 0 to the correct port
     private final DigitalInput limitHighSwitch = new DigitalInput(1); // Change 0 to the correct port
 
+    public int level_0 = 0;
     public int level_1 = 20;
     public int level_2 = 60;
     public int level_3 = 100;
@@ -36,7 +37,7 @@ public class RollerSubsystem extends SubsystemBase {
                 .velocityConversionFactor(1.0); // Adjust as needed
         config.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-                .pid(0.1, 0.0, 0.0); // Initial PID values; tune as necessary
+                .pid(0.07, 0.0, 0.005); // Initial PID values; tune as necessary
 
         // Apply the configuration to the motor
         rollerMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);

@@ -30,12 +30,15 @@ public class ArmUDCommand extends Command {
         // }
 
         if (controller.getRightTriggerAxis()>0) {
-            armUDSubsystem.setUDSpeed(1);
+            armUDSubsystem.setUDSpeed(-1);
+            System.out.println("Right pressed");
         } else if (controller.getLeftTriggerAxis()>0) {
             if (armUDSubsystem.isAtLowLimit()) {
                 armUDSubsystem.setUDSpeed(0);
             } else {
-                armUDSubsystem.setUDSpeed(-1);
+                armUDSubsystem.setUDSpeed(1);
+                System.out.println("Left pressed");
+
             }
         } else {
             armUDSubsystem.setUDSpeed(0);
