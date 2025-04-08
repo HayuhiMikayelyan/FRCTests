@@ -24,7 +24,7 @@ public class RollerSubsystem extends SubsystemBase {
     private final DigitalInput limitHighSwitch = new DigitalInput(1); // Change 0 to the correct port
 
     public int level_0 = 0;
-    public int level_1 = 20;
+    public int level_1 = 35;
     public int level_2 = 60;
     public int level_3 = 100;
     public int level_4 = 140;

@@ -17,11 +17,6 @@ public class ExpandArmCommand extends Command{
 
     @Override
     public void execute() {
-        // if (Constants.OperatorConstants.timer.get()<=4 && Constants.OperatorConstants.timer.get()>0) {
-        //     expandArmSubsystem.setExpandSpeed(-1);
-        // }else{
-        //     expandArmSubsystem.setExpandSpeed(0);
-        // }
         if (controller.getYButton()){
             Constants.OperatorConstants.timer.reset();
             expandArmSubsystem.setExpandSpeed(1);
