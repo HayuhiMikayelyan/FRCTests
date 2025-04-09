@@ -25,9 +25,9 @@ public class RollerSubsystem extends SubsystemBase {
 
     public int level_0 = 0;
     public int level_1 = 35;
-    public int level_2 = 60;
-    public int level_3 = 100;
-    public int level_4 = 140;
+    public int level_2 = 55;
+    public int level_3 = 80;
+    public int level_4 = 103;
 
     public RollerSubsystem() {
         SparkMaxConfig config = new SparkMaxConfig();
