@@ -25,7 +25,7 @@ public class RollerSubsystem extends SubsystemBase {
 
     public int level_0 = 0;
     public int level_1 = 40;
-    public int level_2 = 55;
+    public int level_2 = 50;
     public int level_3 = 80;
     public int level_4 = 103;
 

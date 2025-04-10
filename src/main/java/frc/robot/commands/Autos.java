@@ -68,7 +68,7 @@ public final class Autos {
                         new RollerCommandAuto(rollerSubsystem, 0.8, rollerSubsystem.level_2),
                         // center
                         new DriveForwardAutoCommand(driveSubsystem, 1, 1, 2.6),
-                        new ExpandArmAutoCommand(expandArmSubsystem, 0.7, 0.4),
+                        // new ExpandArmAutoCommand(expandArmSubsystem, 0.7, 0.4),
 
                         new WaitCommand(1),
                         new CatchAutoCommand(catchSubsystem, -1, 1));

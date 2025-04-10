@@ -23,7 +23,7 @@ public class ArmUDCommand extends Command {
             if (armUDSubsystem.isAtLowLimit()) {
                 armUDSubsystem.setUDSpeed(0);
             } else {
-                armUDSubsystem.setUDSpeed(0.8);
+                armUDSubsystem.setUDSpeed(1);
             }
         } else {
             armUDSubsystem.setUDSpeed(0);

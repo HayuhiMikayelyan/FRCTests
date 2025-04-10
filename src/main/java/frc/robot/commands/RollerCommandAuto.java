@@ -34,7 +34,7 @@ public class RollerCommandAuto extends Command {
 
     @Override
     public boolean isFinished() {
-        return rollerSubsystem.getRotations()>=rollerSubsystem.level_1;
+        return rollerSubsystem.getRotations()>=level;
     }
 
     @Override

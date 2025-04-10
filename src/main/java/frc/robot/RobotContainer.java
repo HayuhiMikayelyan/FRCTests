@@ -25,7 +25,6 @@ public class RobotContainer {
   private final ExpandArmSubsystem expandArmSubsystem = new ExpandArmSubsystem();
   private final ArmUDSubsystem armUDSubsystem = new ArmUDSubsystem();
   private final HangSubsystem hangSubsystem = new HangSubsystem();
-  
 
   public RobotContainer() {
     configureBindings();
@@ -35,15 +34,15 @@ public class RobotContainer {
     // driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 
-   public Command getAutonomousCommand() {
+  public Command getAutonomousCommand() {
     System.out.println("Starting Autonomous Mode...");
     return Autos.auto(AutoMode.CENTER, driveSubsystem, rollerSubsystem, expandArmSubsystem, armUDSubsystem,
         catchSubsystem);
   }
 
-   public Command getTeleopCommand() {
-      return Teleop.teleop(driveSubsystem, rollerSubsystem,
-       catchSubsystem, expandArmSubsystem, armUDSubsystem,
-       hangSubsystem, driverController, armController);
-   }
+  public Command getTeleopCommand() {
+    return Teleop.teleop(driveSubsystem, rollerSubsystem,
+        catchSubsystem, expandArmSubsystem, armUDSubsystem,
+        hangSubsystem, driverController, armController);
+  }
 }

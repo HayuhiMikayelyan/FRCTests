@@ -55,7 +55,7 @@ public class RollerCommand extends Command {
             if (rollerSubsystem.isAtLowLimit()) {
                 rollerSubsystem.setRollerSpeed(0);
             } else {
-                rollerSubsystem.setRollerSpeed(-0.5);
+                rollerSubsystem.setRollerSpeed(-0.4);
             }
         } else {
             rollerSubsystem.setRollerSpeed(0);
