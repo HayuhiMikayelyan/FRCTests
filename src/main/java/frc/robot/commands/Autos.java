@@ -88,7 +88,7 @@ public final class Autos {
                         // new WaitCommand(0.5),
                         // new ArmUDAutoCommand(armUDSubsystem, 1, 0.6),
                         // new RollerCommandAuto(rollerSubsystem, -0.8, 0.1),
-                        // new WaitCommand(1),
+                        new WaitCommand(1),
                         new CatchAutoCommand(catchSubsystem, -1, 1),
                         new WaitCommand(0.5),
                         new ExpandArmAutoCommand(expandArmSubsystem, -0.7, 0.3),
