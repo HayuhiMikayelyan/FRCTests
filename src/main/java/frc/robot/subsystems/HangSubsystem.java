@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+/*this section's for suicide (jk) */
 public class HangSubsystem extends SubsystemBase {
     private final SparkMax hangMotor = new SparkMax(3, MotorType.kBrushed);
     

@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.ArmUDSubsystem;
-
+/*Auto ARM up 'n' down */
 public class ArmUDAutoCommand extends Command{
     private final ArmUDSubsystem armUDSubsystem;
     private final double time;

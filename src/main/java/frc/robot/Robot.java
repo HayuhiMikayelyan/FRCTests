@@ -4,7 +4,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+/*Here's a robot main configs(if Im wrong @EmmaManukyan don't kill me) */
 public class Robot extends TimedRobot {
   private Command autonomousCommand;
   private Command teleopCommand;
