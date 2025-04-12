@@ -8,7 +8,16 @@ import frc.robot.subsystems.RollerSubsystem;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command;
+/*a lot of code 
 
+but house for cheering
+
+∵*.•´¸.•*´✶´♡
+° ☆ ° ˛*˛☆_Π______˚☆
+*˚ ˛★˛•*________/ ~ ⧹。˚ ˚
+˚ ˛•˛•˚  ｜ 田田 ｜門｜ ˚
+🌷╬╬🌷╬╬🌷╬╬🌷╬╬🌷
+ */
 public final class Autos {
     public enum AutoMode {
         LEFT,

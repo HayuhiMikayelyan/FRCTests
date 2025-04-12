@@ -13,7 +13,7 @@ import com.revrobotics.spark.SparkClosedLoopController;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+/*ARM up 'n' down */
 public class RollerSubsystem extends SubsystemBase {
     private final SparkMax rollerMotor = new SparkMax(5, MotorType.kBrushless);
     private final RelativeEncoder encoder = rollerMotor.getEncoder();

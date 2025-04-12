@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.ExpandArmSubsystem;
-
+/*expanding arm in auto */
 public class ExpandArmAutoCommand extends Command {
     private final ExpandArmSubsystem expandArmSubsystem;
     private final double speed;

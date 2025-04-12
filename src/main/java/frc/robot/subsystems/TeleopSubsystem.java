@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+/*no need to explain :D */
 public class TeleopSubsystem extends SubsystemBase{
     public TeleopSubsystem() {}
 

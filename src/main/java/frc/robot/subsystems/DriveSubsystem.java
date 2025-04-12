@@ -9,7 +9,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+/*Tokyo drift!!!!!11!!! (but ours's slower 'n' cant drift(((   ) */
 public class DriveSubsystem extends SubsystemBase {
     private final SparkMax leftFront = new SparkMax(1, MotorType.kBrushed);
     private final SparkMax leftRear = new SparkMax(2, MotorType.kBrushed);

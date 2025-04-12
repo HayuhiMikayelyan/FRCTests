@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.HangSubsystem;
-
+/*suicide command =) */
 public class HangCommand extends Command {
     private final HangSubsystem hangSubsystem;
     private final XboxController controller;

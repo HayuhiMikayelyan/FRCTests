@@ -13,7 +13,7 @@ import frc.robot.subsystems.HangSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-
+/*Here we choose Auto path*/
 public class RobotContainer {
 
   private final XboxController driverController = new XboxController(OperatorConstants.kDriverControllerPort);
@@ -33,7 +33,7 @@ public class RobotContainer {
   private void configureBindings() {
     // driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
-
+  /*to be more accurate its here*/
   public Command getAutonomousCommand() {
     System.out.println("Starting Autonomous Mode...");
     return Autos.auto(AutoMode.CENTER, driveSubsystem, rollerSubsystem, expandArmSubsystem, armUDSubsystem,

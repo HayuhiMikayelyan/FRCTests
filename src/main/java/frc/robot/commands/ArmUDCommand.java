@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ArmUDSubsystem;
 
+/*Just ARM up 'n' down*/
 public class ArmUDCommand extends Command {
     private final ArmUDSubsystem armUDSubsystem;
     private final XboxController controller;
