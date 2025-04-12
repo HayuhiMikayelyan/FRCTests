@@ -1,6 +1,6 @@
 # Vagesigh's Brain
 
-![Logo](https://drive.google.com/file/d/1QzxuHj0t1x5f9MQ6AXpqN0ehBmYPKGVV/view?usp=drive_link)
+![Logo](logo.png)
 
 
 ## Used By
