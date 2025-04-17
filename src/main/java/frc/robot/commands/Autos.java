@@ -49,9 +49,9 @@ public final class Autos {
                         new CatchAutoCommand(catchSubsystem, 1, 1),
                         new RollerCommandAuto(rollerSubsystem, 0.8, rollerSubsystem.level_1),
                         // center
-                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 1.7),
+                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 2.5),
                         new TurnCommandAuto(driveSubsystem, 120),
-                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 0.8),
+                        new DriveForwardAutoCommand(driveSubsystem, 1, 1, 1),
                         new ExpandArmAutoCommand(expandArmSubsystem, 0.7, 0.3),
 
                         new WaitCommand(1),
@@ -105,8 +105,6 @@ public final class Autos {
                         new TurnCommandAuto(driveSubsystem, 45),
 
                         new DriveForwardAutoCommand(driveSubsystem, 1, 1, 1)
-
-
                 );
         }
     }

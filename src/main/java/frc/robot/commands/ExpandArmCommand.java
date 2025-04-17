@@ -19,11 +19,11 @@ public class ExpandArmCommand extends Command{
     public void execute() {
         if (controller.getYButton()){
             Constants.OperatorConstants.timer.reset();
-            expandArmSubsystem.setExpandSpeed(0.8);
+            expandArmSubsystem.setExpandSpeed(1);
         } else if (controller.getAButton()){
             Constants.OperatorConstants.timer.reset();
             
-            expandArmSubsystem.setExpandSpeed(-0.8);
+            expandArmSubsystem.setExpandSpeed(-1);
         } else {
             expandArmSubsystem.setExpandSpeed(0);
         }

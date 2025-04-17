@@ -20,6 +20,7 @@ public class ArmUDCommand extends Command {
         int pov = controller.getPOV();
         if (pov == 0) {
             armUDSubsystem.setUDSpeed(-1);
+            System.out.println("Pressed");
         } else if (pov == 180) {
             if (armUDSubsystem.isAtLowLimit()) {
                 armUDSubsystem.setUDSpeed(0);
